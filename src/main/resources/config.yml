@@ -1,0 +1,61 @@
+pouches:
+  item_1:
+    name: '&2&lTier I Doge Pouch &r&7(Right Click)'
+    item: ENDER_CHEST
+    pricerange:
+      from: 0
+      to: 1000
+    lore:
+      - '&7This pouch of loot was stolen'
+      - '&7from the kings castle by a very'
+      - '&7strange person...'
+  item_2:
+    name: '123'
+    item: DIAMOND_SWORD
+    pricerange:
+      from: 10000
+      to: 20000
+    lore:
+      - '&7This mysterious object was dug'
+      - '&7out the grass by some very brave'
+      - '&7players. It holds great power and'
+      - '&7loot.'
+  item_3':
+    name: '&6&lTier III Doge Pouch &r&7(Right Click)'
+    item: ENDER_CHEST
+    pricerange:
+      from: 20005
+      to: 20010
+    lore:
+      - '&7This shining object was taken'
+      - '&7from the cave of the great legend'
+      - '&7known as Herobrine. It wields massive'
+      - '&7power.'
+  '4':
+    name: '&9&lVote box Doge Pouch &r&7(Right Click)'
+    item: ENDER_CHEST
+    pricerange:
+      from: 50001
+      to: 100000
+    lore:
+      - '&7This heavy chest was dropped by'
+      - '&7the great Ender Dragon. Only you'
+      - '&7could beat the Ender Dragon by yourself'
+  '5':
+    name: '&4&lTier IV Doge Pouch &r&7(Right Click)'
+    item: ENDER_CHEST
+    pricerange:
+      from: 50001
+      to: 100000
+    lore:
+      - '&7This great chest was bough from'
+      - '&7Store.dogecraft.net'
+      - '&7And always gives good money'
+options:
+  debug: true
+  messagePrefix: "&f[&2MoneyPouch&f]"
+  sound:
+    enabled: true
+    opensound: BLOCK_CHEST_OPEN
+    revealsound: BLOCK_ANVIL_BREAK
+    endsound: BLOCK_BUBBLE_COLUMN_UPWARDS_AMBIENT

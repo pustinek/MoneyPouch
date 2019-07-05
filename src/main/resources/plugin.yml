@@ -1,0 +1,32 @@
+name: MoneyPouch
+version: ${project.version}
+main: com.pustinek.moneypouch.MoneyPouch
+depend: [Vault]
+author: Pustinek
+description: "Receive money from right click specified item with style"
+api-version: 1.13
+commands:
+  MoneyPouch:
+    description: 'for all commands use /moneypouch help'
+    usage: 'MoneyPouch has not started correctly, check the log file (or console) and correct any errors.'
+    aliases: [mp]
+    permissions:
+      moneypouch.*:
+        description: Give access to all commands of money pouch
+        children:
+          moneypouch.version: true
+          moneypouch.help: true
+          moneypouch.reload: true
+          moneypouch.give: true
+      moneypouch.help:
+        description: Allow you to view the help section\
+        default: op
+      moneypouch.version:
+        description: Show plugin version
+        default: op
+      moneypouch.reload:
+        description: Allows you to reload the plugin
+        default: op
+      moneypouch.give:
+        description: Allows you to give pouches to players
+        default: op
