@@ -142,4 +142,8 @@ public class ConfigManager {
     public Sound getSoundEnd() {
         return soundEnd;
     }
+
+    public String getPluginMessagePrefix() {
+        return pluginMessagePrefix;
+    }
 }

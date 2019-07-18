@@ -5,6 +5,7 @@ import com.pustinek.moneypouch.PouchItem;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,8 @@ public class CommandGiveMP extends CommandDefault {
 
                 // Handing for <item>
                 if (args.length > 2 && args[2] != null) {
+
+
                     String itemName = args[2];
                     PouchItem pouchItem = null;
                     for (PouchItem pi : plugin.getMoneyPouches().values()) {
@@ -58,7 +61,22 @@ public class CommandGiveMP extends CommandDefault {
                         MoneyPouch.messageNoPrefix(sender, "Item with that name doesn't exist");
                         return;
                     }
-                    player.getInventory().addItem(pouchItem.getItem());
+
+                    // Amount handling
+                    int amount = 1;
+
+                    if(args.length > 3 && args[3] != null){
+                        try {
+                            amount = Integer.parseInt(args[3]) > 0 ? Integer.parseInt(args[3]) : 1;
+                        }catch (NumberFormatException e){
+                            // Wrong number do nothing really
+                            amount = 1;
+                        }
+                    }
+                    ItemStack itemStack = pouchItem.getItem();
+                    itemStack.setAmount(amount);
+
+                    player.getInventory().addItem(itemStack);
                     player.updateInventory();
 
                 }

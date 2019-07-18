@@ -24,29 +24,17 @@ public final class MoneyPouch extends JavaPlugin {
     private static Logger logger;
     //Vault
     private static Economy econ = null;
-    private static String pluginMessagePrefix = "&f[&2MoneyPouch&f] ";
     //Managers
     private CommandManager commandManager;
-    private ConfigManager configManager;
+    private static ConfigManager configManager;
     private HashMap<String, PouchItem> moneyPouches = new HashMap<>();
 
     public static void messageNoPrefix(CommandSender sender, String message) {
-        if (sender instanceof ConsoleCommandSender) {
-            System.out.println(ColorUtil.chatColor(message));
-        }
-        if (sender instanceof Player) {
-            sender.sendMessage(ColorUtil.chatColor(message));
-        }
+        sender.sendMessage(ColorUtil.chatColor(message));
     }
 
     public static void message(CommandSender sender, String message) {
-        if (sender instanceof ConsoleCommandSender) {
-            System.out.println(pluginMessagePrefix + message);
-        }
-        if (sender instanceof Player) {
-            sender.sendMessage(ColorUtil.chatColor(pluginMessagePrefix) + ColorUtil.chatColor(message));
-        }
-
+        sender.sendMessage(ColorUtil.chatColor(configManager.getPluginMessagePrefix()) + ColorUtil.chatColor(message));
     }
 
     /**

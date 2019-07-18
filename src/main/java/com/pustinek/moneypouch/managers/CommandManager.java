@@ -39,7 +39,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     public void showHelp(CommandSender target) {
         if (!target.hasPermission("moneypouch.help")) {
             //MoneyPouch.message(tar);
-            MoneyPouch.message(target, "sorry you dont have the required permissions");
+            MoneyPouch.message(target, "sorry you don't have the required permissions");
         }
 
         // Add all messages to a list

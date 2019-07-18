@@ -32,7 +32,6 @@ public class CommandReload extends CommandDefault {
             MoneyPouch.message(sender, noPermission);
             return;
         }
-        Player player = (Player) sender;
 
         MoneyPouch.message(sender, "&2 reloading plugin config files");
 
