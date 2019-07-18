@@ -6,7 +6,7 @@
 
     <groupId>com.pustinek</groupId>
     <artifactId>MoneyPouch</artifactId>
-    <version>1.01</version>
+    <version>1.02</version>
     <packaging>jar</packaging>
 
     <name>MoneyPouch</name>
