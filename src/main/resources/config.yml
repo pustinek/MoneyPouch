@@ -1,3 +1,4 @@
+configVersion: "1.0"
 pouches:
   item_1:
     name: '&2&lTier I Doge Pouch &r&7(Right Click)'
@@ -54,6 +55,7 @@ pouches:
 options:
   debug: true
   messagePrefix: "&f[&2MoneyPouch&f]"
+  recursiveOpening: false
   sound:
     enabled: true
     opensound: BLOCK_CHEST_OPEN

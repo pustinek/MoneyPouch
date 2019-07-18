@@ -3,6 +3,7 @@ package com.pustinek.moneypouch.listeners;
 import com.connorlinfoot.titleapi.TitleAPI;
 import com.pustinek.moneypouch.MoneyPouch;
 import com.pustinek.moneypouch.PouchItem;
+import com.pustinek.moneypouch.managers.ConfigManager;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Sound;
@@ -15,12 +16,16 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class OnRightClick implements Listener {
 
     private MoneyPouch plugin;
+    // Used to store the players that are currently opening the moneypouch
+    private ArrayList<UUID> openingPlayers = new ArrayList<>();
 
     public OnRightClick(MoneyPouch plugin) {
         this.plugin = plugin;
@@ -45,9 +50,14 @@ public class OnRightClick implements Listener {
                     }
                 }
                 if (matchedPouchItem == null) return; //Not a singe pouch was matched with this item
-
-
+                event.setCancelled(true);
                 Player player = event.getPlayer();
+                if(openingPlayers.contains(player.getUniqueId()) && !this.plugin.getConfigManager().isRecursiveOpening()){
+                    MoneyPouch.message(player, " &cYou are already in the process of receiving a reward, please wait !");
+                    return;
+                }
+                openingPlayers.add(player.getUniqueId());
+
 
                 final int amount = player.getInventory().getItemInMainHand().getAmount();
                 if (amount == 1) {
@@ -78,6 +88,7 @@ public class OnRightClick implements Listener {
                             EconomyResponse r = econ.depositPlayer(player, moneyToGive);
                             if (r.transactionSuccess()) {
                                 MoneyPouch.message(player, String.format("You received %s, your new balance is %s", econ.format(r.amount), econ.format(r.balance)));
+                                openingPlayers.remove(player.getUniqueId());
                                 playSound(player, plugin.getConfigManager().getSoundEnd(), 3.0F, 0.533F);
                             } else {
                                 MoneyPouch.messageNoPrefix(player, String.format("An error occured: %s", r.errorMessage));
@@ -86,7 +97,6 @@ public class OnRightClick implements Listener {
                         }
                     }
                 }.runTaskTimer(plugin, 5, 20);
-                event.setCancelled(true);
             }
         }
 

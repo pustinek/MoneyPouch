@@ -19,6 +19,8 @@ public class ConfigManager {
 
     private boolean debug = false;
     private boolean soundEnabled = false;
+    private boolean recursiveOpening = false;
+
     private Sound soundOpen = Sound.BLOCK_CHEST_OPEN;
     private Sound soundReveal = Sound.BLOCK_ANVIL_BREAK;
     private Sound soundEnd = Sound.ENTITY_GENERIC_EXPLODE;
@@ -105,7 +107,7 @@ public class ConfigManager {
             ConfigurationSection optionsCS = config.getConfigurationSection("options");
             this.debug = optionsCS.getBoolean("debug");
             this.soundEnabled = optionsCS.getBoolean("sound.enabled");
-
+            this.recursiveOpening = optionsCS.getBoolean("recursiveOpening");
             try {
                 this.soundOpen = Sound.valueOf(optionsCS.getString("sound.opensound"));
                 this.soundReveal = Sound.valueOf(optionsCS.getString("sound.revealsound"));
@@ -115,7 +117,7 @@ public class ConfigManager {
                 plugin.debug(ex.getMessage());
             }
 
-            this.pluginMessagePrefix = optionsCS.getString("messagePrefix") != null ? pluginMessagePrefix : optionsCS.getString("messagePrefix");
+            this.pluginMessagePrefix = optionsCS.getString("messagePrefix") == null ? pluginMessagePrefix : optionsCS.getString("messagePrefix");
 
         }
 
@@ -126,7 +128,9 @@ public class ConfigManager {
     public boolean isDebug() {
         return debug;
     }
-
+    public boolean isRecursiveOpening() {
+        return recursiveOpening;
+    }
     public boolean isSoundEnabled() {
         return soundEnabled;
     }
@@ -146,4 +150,6 @@ public class ConfigManager {
     public String getPluginMessagePrefix() {
         return pluginMessagePrefix;
     }
+
+
 }
