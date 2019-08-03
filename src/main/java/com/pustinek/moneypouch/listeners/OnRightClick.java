@@ -87,11 +87,11 @@ public class OnRightClick implements Listener {
                             Economy econ = MoneyPouch.getEconomy();
                             EconomyResponse r = econ.depositPlayer(player, moneyToGive);
                             if (r.transactionSuccess()) {
-                                MoneyPouch.message(player, String.format("You received %s, your new balance is %s", econ.format(r.amount), econ.format(r.balance)));
+                                MoneyPouch.message(player, String.format(" You received %s, your new balance is %s", econ.format(r.amount), econ.format(r.balance)));
                                 openingPlayers.remove(player.getUniqueId());
                                 playSound(player, plugin.getConfigManager().getSoundEnd(), 3.0F, 0.533F);
                             } else {
-                                MoneyPouch.messageNoPrefix(player, String.format("An error occured: %s", r.errorMessage));
+                                MoneyPouch.messageNoPrefix(player, String.format(" An error occured: %s", r.errorMessage));
                             }
                             cancel();
                         }
